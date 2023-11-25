@@ -87,6 +87,9 @@
       console.log(c);
       insertBeastCall(c);
     }
+    //Un-HIDE
+    let g = document.getElementsByTagName("body")[0]
+    g.removeAttribute("style");
   }
 
   /**
