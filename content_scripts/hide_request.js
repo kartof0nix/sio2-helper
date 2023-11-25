@@ -1,0 +1,1 @@
+let filter = webRequest.filterResponseData();
