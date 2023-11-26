@@ -32,7 +32,7 @@ const hideCSS=`.siohelper_hidden {
                 elems[i].style="background: #ffffff;" ;
             }
             //Dla tabeli 'PROBLEMS'
-            if(elems[i].classList.contains("label")){
+            if(elems[i].classList.contains("label") || elems[i].classList.contains("badge")){
               try {
                 let a = parseInt(elems[i].textContent);
                 if( a >= 0 && a <= 100){
