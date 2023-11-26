@@ -7,22 +7,22 @@
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @grant        none
 // ==/UserScript==
-const hideCSS=`.siohelper_hidden {
-  display: none;
-};`;
 
 (function() {
-
-    /**
-     * Check and set a global guard variable.
-     * If this content script is injected into the same page again,
-     * it will do nothing next time.
-     */
-    if (window.hasRun) {
-      return;
-    }
-    window.hasRun = true;
-    
+  
+  /**
+   * Check and set a global guard variable.
+   * If this content script is injected into the same page again,
+   * it will do nothing next time.
+  */
+ if (window.hasRun) {
+   return;
+  }
+  window.hasRun = true;
+  const hideCSS=`.siohelper_hidden {
+    display: none;
+  };`;
+  
   
    function hideScores() {
         var elems = document.body.getElementsByTagName("*");

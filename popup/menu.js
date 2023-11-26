@@ -65,7 +65,9 @@ function listenForClicks() {
           .then(reset)
           .catch(reportError);
       }
-
+    }
+    if(e.target.classList.contains("bt_sum_ranking")){
+      browser.tabs.executeScript({file: "/content_scripts/ranking_sums.js"});
     }
   });
 }
