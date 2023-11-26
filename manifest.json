@@ -1,10 +1,10 @@
 {
 
-  "description": "Adds a browser action icon to the toolbar. Click the button to choose a beast. The active tab's body content is then replaced with a picture of the chosen beast. See https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Examples#beastify",
+  "description": "Adds a browser action icon to the toolbar. Can hide score points of submissions.",
   "manifest_version": 2,
-  "name": "Beastify2",
+  "name": "Sio2 Helper",
   "version": "1.0",
-  "homepage_url": "https://github.com/mdn/webextensions-examples/tree/master/beastify",
+  "homepage_url": "https://github.com/kartof0nix/sio2-helper",
   "icons": {
     "48": "icons/eye-48.png"
   },
@@ -18,7 +18,7 @@
   ],
   "applications": {
     "gecko": {
-        "id": "Beastify2@siohelper.com"
+        "id": "sio2helper@siohelper.com"
     }
   },
   "browser_action": {
@@ -28,7 +28,7 @@
         "dark": "icons/eye-32.png",
         "size": 32
     }],
-    "default_title": "Beastify2",
+    "default_title": "Sio2 Helper",
     "default_popup": "popup/menu.html"
   },
   
@@ -41,9 +41,6 @@
   ],
   "background": {
     "scripts": ["background_scripts/hide_request.js"]
-  },
-  "web_accessible_resources": [
-    "beasts/*.jpg"
-  ]
+  }
 
 }
