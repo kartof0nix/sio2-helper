@@ -7,6 +7,9 @@
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @grant        none
 // ==/UserScript==
+const hideCSS=`.siohelper_hidden {
+  display: none;
+};`;
 
 (function() {
 
@@ -19,7 +22,6 @@
       return;
     }
     window.hasRun = true;
-  
     
   
    function hideScores() {
@@ -29,11 +31,23 @@
                 //console.log(elems[i]);
                 elems[i].style="background: #ffffff;" ;
             }
+            //Dla tabeli 'PROBLEMS'
+            if(elems[i].classList.contains("label")){
+              try {
+                let a = parseInt(elems[i].textContent);
+                if( a >= 0 && a <= 100){
+                  elems[i].classList.add("siohelper_hidden");
+                }
+              } catch (error) {
+                // Expected error - non-text value
+              }
+              
+            }
         }
         for (let i=0; i < elems.length; i++){
             if(elems[i].id.includes("score") ){
                 //console.log(elems[i]);
-                elems[i].style="display:none" ;
+                elems[i].classList.add("siohelper_hidden");
             }
         }
     }
@@ -50,6 +64,9 @@
                 //console.log(elems[i]);
                 elems[i].removeAttribute("style");
             }
+            if(elems[i].classList.contains("siohelper_hidden")){
+              elems[i].classList.remove("siohelper_hidden");
+            }
         }
 
     }
@@ -64,9 +81,13 @@
       if(a["Hidden"]){
         hideScores();
       }
-      //Un-HIDE
+      let stl = document.createElement("style");
+      stl.textContent = hideCSS;
       let g = document.getElementsByTagName("body")[0]
+      g.appendChild(stl);
+      //Un-HIDE
       g.removeAttribute("style");
+      //Add hiding css
     }
   
     /**
