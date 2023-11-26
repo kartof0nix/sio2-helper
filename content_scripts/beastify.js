@@ -98,6 +98,7 @@
   */
   
   browser.runtime.onMessage.addListener((message) => {
+    // console.log(message.command);
     if (message.command === "beastify") {
       insertBeastCall(message.beastURL);
       

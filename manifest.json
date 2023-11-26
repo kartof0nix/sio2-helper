@@ -6,7 +6,7 @@
   "version": "1.0",
   "homepage_url": "https://github.com/mdn/webextensions-examples/tree/master/beastify",
   "icons": {
-    "48": "icons/beasts-48.png"
+    "48": "icons/eye-48.png"
   },
 
   "permissions": [
@@ -22,24 +22,20 @@
     }
   },
   "browser_action": {
-    "default_icon": "icons/beasts-32.png",
+    "default_icon": "icons/eye-32.png",
     "theme_icons": [{
-        "light": "icons/beasts-32-light.png",
-        "dark": "icons/beasts-32.png",
+        "light": "icons/eye-32.png",
+        "dark": "icons/eye-32.png",
         "size": 32
     }],
     "default_title": "Beastify2",
-    "default_popup": "popup/choose_beast.html"
+    "default_popup": "popup/menu.html"
   },
   
   "content_scripts": [
     {
-      "matches": ["*://*.mozilla.org/*"],
-      "js": ["content_scripts/beastify.js"]
-    },
-    {
       "matches": ["*://*.sio2.staszic.waw.pl/*","*://*.sio2.mimuw.edu.pl/*", "*://*.szkopul.edu.pl/*"],
-      "js": ["content_scripts/beastify.js"]
+      "js": ["content_scripts/hide_scores.js"]
     }
 
   ],
