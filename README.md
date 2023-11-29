@@ -1,4 +1,4 @@
-# Sio-helper
+# Sio2-helper
 
 ## What it does ##
 
@@ -29,7 +29,7 @@ First, remember to turn on score hiding before entering sio2 in order not to spo
 
 
 ## Beta release
-This is an in-production work. Some features ( like editting revealing presets ) are not yet implemented. Bugs are expected. This version only works for Firefox and Safari browsers ( only tested on firefox).
+This is an in-production work. Some features are not yet implemented. Bugs are to be expected. This version only works for Firefox and Safari browsers ( only tested on firefox).
 
 ## Installation
 
