@@ -41,3 +41,22 @@ body{
     left: 0;
     font-size: 2pc;
 }
+
+#listContainer{
+    margin: auto;
+}
+
+/* .button {
+padding: 4px;
+text-align: center;
+font-size: 1em;
+cursor: pointer;
+} */
+
+.beast:hover {
+background-color: rgb(135, 246, 246);
+}
+
+.beast {
+background-color: #c4f2f2;
+}

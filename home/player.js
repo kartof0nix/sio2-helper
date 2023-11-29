@@ -107,21 +107,39 @@ function endVideo(){
   p.innerText="Congrats! You got " + String(points) + " points!";
 }
 
+function getArgs(){
+  let urlString = window.location.href;
+  id=-1;
+  points = -1;
+  try{
+      let paramString = urlString.split('?')[1];
+      let queryString = new URLSearchParams(paramString);
+      
+      for (let pair of queryString.entries()) {
+          if(pair[0] == "id") { id = pair[1]};
+          if(pair[0] == "points") { points = pair[1]};
+      }
+  }catch{}
+  return [id, points];
+}
+
+async function getSettings(id) {
+  var pre = await browser.storage.local.get("presets");
+  pre=pre.presets;
+  if(pre == null){
+      return null
+  }
+  if(id >= pre.length ) return null
+  return pre[id];
+}
+
 
 async function loadVideo(){
   //Find the id of template
   let urlString = window.location.href;
-  let id = -1;
-  points=-1;
-  try{
-    let paramString = urlString.split('?')[1];
-    let queryString = new URLSearchParams(paramString);
-    
-    for (let pair of queryString.entries()) {
-      if(pair[0] == "id") { id = parseInt(pair[1])};
-      if(pair[0] == "points") { points = pair[1]};
-    }
-  }catch{}
+  var a = getArgs();
+  id = a[0], points= a[1];
+  
   if(id==-1 || points==-1){
     document.getElementById("error").removeAttribute("style");
     return;
@@ -131,13 +149,15 @@ async function loadVideo(){
   // console.log("Fuff");
   try{
     points = parseInt(new TextDecoder().decode(base64ToBytes(points)));
-    params = await Fetch(id);
+    params = await getSettings(id)
+    // params = await Fetch(id);
   }
   catch{
     document.getElementById("error").innerText = document.getElementById("error").innerText + ". Error:failed_to_fetch_parameters";
     document.getElementById("error").removeAttribute("style");
     return;
   }
+  // console.log(points);
   console.log(params);
   
   // 2. This code loads the IFrame Player API code asynchronously.

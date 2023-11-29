@@ -19,29 +19,55 @@ function getPoints(){
     }
 }
 
+async function getSettings() {
+    let pre = await browser.storage.local.get("presets");
+    return pre["presets"];
+}
+
+settings = [];
+
 function start(id){
     window.location.assign("./player.html?id=" +String(id) + "&points=" + points);
 }
 
-async function Fetch() {
+function newEntry(){
+    window.location.assign("./edit.html?id=" + String(settings.length) + "&points=" + points);
+}
+
+function editEntry(id){
+    window.location.assign("./edit.html?id=" + String(id) + "&points=" + points );
+}
+
+async function assignFirstSettings(){
     var a = await fetch("./presets.json") .then((res) => {
         return res.json();
     });
-    console.log("BAKA!");
-    var pre = a["presets"];
+    console.log("Refill");
+    settings = a.presets;
+    
+    browser.storage.local.set({"presets": settings});
+}
+
+async function init() {
+    settings = await getSettings();
+    console.log("settings:");
+    console.log(settings);
+    // await assignFirstSettings();
+    if(settings.length == null || settings.length <= 0)  await assignFirstSettings();
     var listCont = document.getElementById("listContainer");
-    for(var i = 0; i < pre.length; i++){
+    for(var i = 0; i < settings.length; i++){
         // console.log(b[i]);
         var d = document.createElement("div");
         var title = document.createElement("div");
         title.setAttribute("class", "button text title");
-        title.setAttribute("id", "bt:"+String(pre[i].id));
+        title.setAttribute("id", "bt:"+String(settings[i].id));
         // title.setAttribute("onclick", "start()");
-        title.innerText = pre[i].title;
-
+        title.innerText = settings[i].title;
+        
         var editIcon = document.createElement("i");
         editIcon.setAttribute("class", "material-icons edit");
         editIcon.setAttribute("style", "font-size:36px; color:white");
+        editIcon.setAttribute("id", "ic:"+String(settings[i].id));
         editIcon.innerText="edit";
 
         // title.setAttribute("href", "./reveal.html");
@@ -54,14 +80,19 @@ async function Fetch() {
 document.addEventListener("click", (e) => {
     if (e.target.classList.contains("button")){
         var t = parseInt(e.target.id.split(':')[1]);
-        console.log("Start " + String(t));
-        console.log(t);
         start(t);
+        return;
+    }
+    if (e.target.id=="new"){
+        newEntry();
+        return;
+    }
+    if(e.target.classList.contains("edit")){
+        var t = parseInt(e.target.id.split(':')[1]);
+        editEntry(t);
     }
 });
 
-console.log("SUU");
 getPoints();
-console.log("SSYY");
 if(points != -1)
-    Fetch();
+    init();
