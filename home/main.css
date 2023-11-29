@@ -1,0 +1,43 @@
+.text{
+    
+    color: rgb(200, 210, 216);
+    font-family: 'Nova Square', sans-serif;
+}
+
+body{
+    background-color:#46474a
+}
+
+.title{
+    font-size: 3em;
+    position: relative;
+    left: 10px;
+    margin-inline: 35px;
+    display:inline
+}
+
+.button {
+    margin: 3% auto;
+    padding: 4px;
+    /* text-align: center; */
+    /* font-size: 1em; */
+    cursor: pointer;
+  }
+
+.header{
+    text-align: center;
+    font-size: 3pc;
+}
+
+.edit{
+    margin-inline: 30px;
+    cursor: pointer;
+    /* font-size: 50px; */
+}
+
+.tip{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: 2pc;
+}

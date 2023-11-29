@@ -1,5 +1,5 @@
 html, body {
-  width: 150px;
+  width: 200px;
 }
 
 /*The buttons*/
@@ -16,20 +16,21 @@ html, body {
 }
 
 .beast:hover {
-  background-color: #CFF2F2;
+  background-color: rgb(135, 246, 246);
 }
 
 .beast {
-  background-color: #E5F2F2;
+  background-color: #c4f2f2;
 }
 
-.reset {
-  background-color: #FBFBC9;
+.disabled {
+  margin: 3% auto;
+  padding: 4px;
+  text-align: center;
+  font-size: 1em;
+  background-color: rgb(174, 174, 174);
 }
 
-.reset:hover {
-  background-color: #EAEA9D;
-}
 /* The slider */
 .slider_p{
   display: inline;

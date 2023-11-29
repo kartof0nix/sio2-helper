@@ -41,6 +41,11 @@
   ],
   "background": {
     "scripts": ["background_scripts/hide_request.js"]
-  }
+  },
+  "web_accessible_resources": [
+    "home/*",
+    "home/presets.json"
+
+  ]
 
 }

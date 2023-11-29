@@ -1,0 +1,12 @@
+{
+    "presets":[
+        {   
+            "id" : 1, 
+            "vuid" : "CiG0pI8p-AA",
+            "title" : "FNAF UCN score",
+            "start" : 3570,
+            "ppMs" : 0.002,
+            "comment": "100pkt = 1pkt na sio2"
+        }
+    ]
+}
