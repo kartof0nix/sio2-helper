@@ -20,11 +20,13 @@
   const sioUrls=["*://*.sio2.staszic.waw.pl/*","*://*.sio2.mimuw.edu.pl/*", "*://*.szkopul.edu.pl/*"]
   const labelUrls=["sio2.staszic.waw.pl"]
   const finalTestingKeywords = ["końcowe", "final"]
-
+  
   const hideCSS=`.siohelper_hidden {
     display: none;
   };`;
   
+  var currentlyHiding = false;
+
   function isNumeric(str) {
     if (typeof str != "string") return false // we only process strings!  
     return !isNaN(str) 
@@ -103,6 +105,7 @@
     hideScoreBadges();
     hideScoreResults();
     hideFinalTestingReport();
+    currentlyHiding=true;
     browser.storage.local.set({"Hidden":true});
   }
 
@@ -122,8 +125,9 @@
     }
   }
   function showScoresCall() {
-    browser.storage.local.set({"Hidden":false});
     showScores();
+    currentlyHiding=false;
+    browser.storage.local.set({"Hidden":false});
   }
 
   function calcScore(){
@@ -141,11 +145,29 @@
     return {"ile" : ile, "res" : res};
   }
 
+  function addNotificationsRedirect(){
+    console.log("Added!");
+    document.addEventListener("click", (e) => {
+      console.log(e.target);
+      if(e.target.id.includes("notifications")){
+        if(currentlyHiding){
+          //Hide document to prevent accidentally seing your results
+          document.getElementsByTagName("body")[0].classList.add("siohelper_hidden");
+          currentUrl = window.location.origin;
+          window.location.assign(currentUrl+"/submissions/");
+        }
+      }
+    });
+  }
+
   async function init(){
     let a = await browser.storage.local.get("Hidden");
     // console.log("Initiat");
     if(a["Hidden"]){
       hideScoresCall();
+    }
+    if(window.location.href.includes("szkopul.edu.pl")){
+      addNotificationsRedirect();
     }
     let stl = document.createElement("style");
     stl.textContent = hideCSS;
