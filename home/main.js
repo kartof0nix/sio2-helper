@@ -53,7 +53,7 @@ async function init() {
     console.log("settings:");
     console.log(settings);
     // await assignFirstSettings();
-    if(settings.length == null || settings.length <= 0)  await assignFirstSettings();
+    if(settings == undefined || settings.length == null || settings.length <= 0)  await assignFirstSettings();
     var listCont = document.getElementById("listContainer");
     for(var i = 0; i < settings.length; i++){
         // console.log(b[i]);
