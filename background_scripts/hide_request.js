@@ -1,6 +1,15 @@
 sioUrls=["*://*.sio2.staszic.waw.pl/*","*://*.sio2.mimuw.edu.pl/*", "*://*.szkopul.edu.pl/*"]
 
 function listener(details) {
+
+    //Check if this is a problem statement
+    var pts = ["","",""].concat( details.url.split('/'));
+    if((pts[pts.length-2] == "p" && pts[pts.length-1] != "")|| pts[pts.length-3] == "p" ){
+        //Like "*/p/abc" or "*/p/abc/" 
+        console.log("BREAK!");
+        return;
+    }
+
     console.log("Site intercepted!");
     let filter = browser.webRequest.filterResponseData(details.requestId);
     let decoder = new TextDecoder("utf-8");
