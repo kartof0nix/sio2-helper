@@ -2,14 +2,6 @@ sioUrls=["*://*.sio2.staszic.waw.pl/*","*://*.sio2.mimuw.edu.pl/*", "*://*.szkop
 
 function listener(details) {
 
-    //Check if this is a problem statement
-    var pts = ["","",""].concat( details.url.split('/'));
-    if((pts[pts.length-2] == "p" && pts[pts.length-1] != "")|| pts[pts.length-3] == "p" ){
-        //Like "*/p/abc" or "*/p/abc/" 
-        console.log("BREAK!");
-        return;
-    }
-
     console.log("Site intercepted!");
     let filter = browser.webRequest.filterResponseData(details.requestId);
     let decoder = new TextDecoder("utf-8");
@@ -17,11 +9,21 @@ function listener(details) {
     
     filter.ondata = event => {
         let str = decoder.decode(event.data, {stream: true});
-        // Just change any instance of Example in the HTTP response
-        // to WebExtension Example.
-        str = str.replace("<body", '<body style="display:none"');
-        filter.write(encoder.encode(str));
-        filter.disconnect();
+        // console.log(str);
+        //Check if this is a HTML file
+        if(str.includes("<!DOCTYPE html>")){
+            // Just hide the body component
+            console.log("Replacing...");
+            str = str.replace("<body", '<body style="display:none"');
+            filter.write(encoder.encode(str));
+            filter.disconnect();
+        }
+        else{
+            //Return EXACTLY the same data
+            filter.write(event.data);
+            filter.disconnect();
+        }
+        return;
     }
     
     return {};
