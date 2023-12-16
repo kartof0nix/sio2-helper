@@ -107,7 +107,33 @@ async function setSlider(){
   }
 }
 
+async function checkForUpdates(){
+  console.log(browser.runtime.getManifest().version);
+  var a = await fetch("https://api.github.com/repos/kartof0nix/sio2-helper/releases/latest", {
+    method: "GET" // default, so we can ignore
+  }).then((response) => response.json())
+  .then((json) => {
+    var tag = json.tag_name;
+    var tag_v = "";
+    //Parse version
+    for(var c of tag){
+      if(tag_v != "" || (c >= '0' && c <= '9')){
+        tag_v += c;
+      }
+    }
+    var cur_v = browser.runtime.getManifest().version;
+    if(cur_v != tag_v){
+      //Show update message
+      document.getElementById("update-div").classList.remove("hidden");
+      document.getElementById("update-version").textContent=tag_v;
+      document.getElementById("update-cur").textContent=cur_v;
+    }
+  });
+  // console.log(a);
+}
+
 setSlider();
+checkForUpdates();
 
 /**
  * When the popup loads, inject a content script into the active tab,
