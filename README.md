@@ -2,29 +2,29 @@
 
 ## What it does ##
 
-This is a concatination of all tools I have written for sio2.
+This is a concatination of tools that improve sio2 experience.
 
-However, the most developed feature as of now is score revealing.
+It is compatible with all versions of sio2 that I am aware of (see Tested Sio2 Versions paragraph) , however if you find a bug, please create an Issue.
 
 ### List of all features:
-1. Score hiding ( for virtual contests)
-2. Vertical ranking sum ( points per task)
-3. Score revealing.
+1. Score hiding - useful for creating virtual contests.
+2. Vertical ranking sum (points per task) - allows you to clasify the difficulty of tasks.
+3. Score revealing (UNAVAILABLE).
  
 # Usage
-All controls are in upper-right extension menu. You can't use the extension on built-in websites.
+All controls are in upper-right extension menu. You can't use the extension on built-in browser websites.
 
 ### 1. Score hiding 
 
-This is pretty intuitional : you just flip on a switch and all scores are now invisible.
+This is pretty intuitional : you just flip the switch and all final scores are now invisible.
 
 ### 2. Ranking sum.
 
-Enter a ranking page and click 'Sum Ranking'
+Enter a ranking page and click 'Sum Ranking' button in the extension menu.
 
 ### 3. Score revealing.
 
-First, remember to turn on score hiding before entering sio2 in order not to spoil the scores. Then, enter the appropriate contest on sio2. Once you enter the 'Problems' / 'Zadania' subpage, you will be able to see how many problems are rated (only submitted problems count). If satisfactory, click 'Score Reveal'.
+First, remember to turn on score hiding before entering sio2 in order not to spoil the scores. Then, enter the appropriate contest on sio2. Once you enter the 'Problems' / 'Zadania' subpage, you will be able to see how many problems are rated. Then, click 'Score Reveal' in the menu.
 
 
 
@@ -48,6 +48,12 @@ If your browser hasn't installed the extension already:
 * If you'd like to contribute you are welcome to open a pull request ( although my code is spagetthi )
 * If you encounter issues open an issue on github.com
 * This extension does not (yet) auto-update.
+  
+ ## Tested Sio2 versions
+ * https://sio2.staszic.waw.pl
+ * https://wyzwania.programuj.edu.pl
+ * https://sio2.mimuw.edu.pl
+ * https://szkopul.edu.pl
 
 
 
